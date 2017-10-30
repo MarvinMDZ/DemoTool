@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sizmek Preview Tool</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link href="css/styleForm.css" rel="stylesheet">
+</head>
+<body id="body" onLoad="javascript:grabURL();" style="background: url(&quot;Capturas/SIZMEK.png&quot;)no-repeat center top; background-color: #FFFFFF;">
+	<div class="wrapper" id="adpreview">
+		<div id="main" style="padding:100px 0 0 0;">
+		<!-- Form -->
+            <section id="fastPreviewAds" class="fastPreviewAds">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-left">
+                            <form id="contact-form">
+                                Ad1 id: <input placeholder="AD1 ID" type="text" name="adid1" id="adid1" tabindex="1" value="34168093"  required><br>
+                                Ad1 Width: <input placeholder="AD1 Width" type="text" name="width1" id="width1" tabindex="2" value="980" style="width: 45px;" required>
+                                Ad1 Height: <input placeholder="AD1 Height" type="text" name="height1" id="height1" tabindex="3" value="90" style="width: 45px;" required><br>
+                                Div1 Top: <input placeholder="AD1 Top" type="text" name="top1" id="top1" tabindex="4" value="10" style="width: 45px;">
+                                Div1 Left: <input placeholder="AD1 Left" type="text" name="left1" id="left1" tabindex="5" value="center" style="width: 45px;">
+                                URL Background: <input placeholder="URL Background" type="text" name="urlBG" id="urlBG" tabindex="5" value="http://www.sizmek.es/eb/users/javiegido_/__Demos/Capturas/SIZMEK.png" >
+                                <br><br>
+                                <button name="submit" type="submit" id="submitPreview" >Open Preview!</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+             </section>
+        </div>
+    </div>
+    <script>
+        function getUrlParameters(parameter, staticURL, decode){
+           var currLocation = (staticURL.length)? staticURL : window.location.search,
+               parArr = currLocation.split("?")[1].split("&"),
+               returnBool = true;
+           
+           for(var i = 0; i < parArr.length; i++){
+                parr = parArr[i].split("=");
+                if(parr[0] == parameter){
+                    return (decode) ? decodeURIComponent(parr[1]) : parr[1];
+                    returnBool = true;
+                }else{
+                    returnBool = false;            
+                }
+           }
+           
+           if(!returnBool) return false;  
+        }
+
+        function grabURL(){
+            var adid1 = getUrlParameters("adid1", "", true);
+            var adwidth1 = getUrlParameters("width1", "", true);
+            var adheight1= getUrlParameters("height1", "", true);
+            var style_top1= getUrlParameters("top1", "", true);
+            var style_left1= getUrlParameters("left1", "", true);
+            var urlBG= getUrlParameters("urlBG", "", true);
+
+
+            if(style_left1=="center"){
+                var html = '\x3Cdiv id="adcontainer1" style="top:'+style_top1+'px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);">\x3Cscript type="text/javascript"  src="http://bs.preview.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&amp;c=28&amp;pli=&amp;PluID=0&amp;pr=1&amp;ai='+adid1+'&amp;w='+adwidth1+'&amp;h='+adheight1+'&amp;&ibp=1&amp;ord=">\x3C/script>\x3C/div>';
+                
+            }else{
+                var html = '\x3Cdiv id="adcontainer1" style="top:'+style_top1+'px; left:'+style_left1+'px;-webkit-transform:none;-ms-transform:none;transform:none;position:absolute;">\x3Cscript type="text/javascript"  src="http://bs.preview.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&amp;c=28&amp;pli=&amp;PluID=0&amp;pr=1&amp;ai='+adid1+'&amp;w='+adwidth1+'&amp;h='+adheight1+'&amp;&ibp=1&amp;ord=">\x3C/script>\x3C/div>';
+            }
+
+            document.open();
+            document.write(html); 
+            document.body.style.background ="url('"+urlBG+"')no-repeat center top";
+            document.close();   
+        }
+</script>
+
+
+</body>
+</html>
