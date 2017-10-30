@@ -14,7 +14,7 @@
                                 Ad id: <input placeholder="Ad id" type="text" name="Adid" id="adid" tabindex="1" value="34168093"  required><br>
                                 Ad Width: <input placeholder="Ad Width" type="text" name="Width" id="width" tabindex="2" value="980" style="width: 45px;" required>
                                 Ad Height: <input placeholder="Ad Height" type="text" name="Height" id="height" tabindex="3" value="90" style="width: 45px;" required><br>
-                                Div Position: <input placeholder="Div Position" type="text" name="Position" id="position" tabindex="4" value="10" style="width: 45px;">
+                                Div Position: <input placeholder="Div Position" type="text" name="Position" id="position" tabindex="4" value="1" style="width: 45px;">
                                 <br><br>
                                 <button name="submit" type="submit" id="submitPreview" >Open Preview!</button>
                             </form>
@@ -131,21 +131,29 @@ Phasellus vestibulum, enim vitae tempor aliquam, orci ante sollicitudin ligula, 
         }
 
         function grabURL(){
-            var adid = getUrlParameters("adid", "", true);
-            var adwidth = getUrlParameters("width", "", true);
-            var adheight= getUrlParameters("height", "", true);
-            var position= getUrlParameters("position", "", true);
-            
+            var adid = getUrlParameters("Adid", "", true);
+            var adwidth = getUrlParameters("Width", "", true);
+            var adheight= getUrlParameters("Height", "", true);
+            var position= getUrlParameters("Position", "", true);
+            //debugger;
+            if (adid!="") {
+                document.getElementById('formContainer').style.display = 'none';
+            }
+
             if(position==="1"){
                 var html = '\x3Cdiv id="adcontainer1" style="">\x3Cscript type="text/javascript"  src="http://bs.preview.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&amp;c=28&amp;pli=&amp;PluID=0&amp;pr=1&amp;ai='+adid+'&amp;w='+adwidth+'&amp;h='+adheight+'&amp;&ibp=1&amp;ord=">\x3C/script>\x3C/div>';
+                document.getElementById('posicion01').contentWindow.document.open();
+            document.getElementById('posicion01').contentWindow.document.write(html); 
+            document.getElementById('posicion01').contentWindow.document.close();   
                 
             }else{
                 var html = '\x3Cdiv id="adcontainer1" style="">\x3Cscript type="text/javascript"  src="http://bs.preview.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&amp;c=28&amp;pli=&amp;PluID=0&amp;pr=1&amp;ai='+adid+'&amp;w='+adwidth+'&amp;h='+adheight+'&amp;&ibp=1&amp;ord=">\x3C/script>\x3C/div>';
+                document.getElementById('posicion02').contentWindow.document.open();
+            document.getElementById('posicion02').contentWindow.document.write(html); 
+            document.getElementById('posicion02').contentWindow.document.close();   
             }
 
-            document.getElementById('posicion01').contentWindow.document.open();
-            document.getElementById('posicion01').contentWindow.document.write(html); 
-            document.getElementById('posicion01').contentWindow.document.close();   
+            
 
         }
 </script>
