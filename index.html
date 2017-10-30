@@ -135,25 +135,31 @@ Phasellus vestibulum, enim vitae tempor aliquam, orci ante sollicitudin ligula, 
             var adwidth = getUrlParameters("Width", "", true);
             var adheight= getUrlParameters("Height", "", true);
             var position= getUrlParameters("Position", "", true);
-            //debugger;
             if (adid!="") {
                 document.getElementById('formContainer').style.display = 'none';
             }
-
+            var ifrm;
             if(position==="1"){
-                var html = '\x3Cdiv id="adcontainer1" style="">\x3Cscript type="text/javascript"  src="http://bs.preview.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&amp;c=28&amp;pli=&amp;PluID=0&amp;pr=1&amp;ai='+adid+'&amp;w='+adwidth+'&amp;h='+adheight+'&amp;&ibp=1&amp;ord=">\x3C/script>\x3C/div>';
-                document.getElementById('posicion01').contentWindow.document.open();
-            document.getElementById('posicion01').contentWindow.document.write(html); 
-            document.getElementById('posicion01').contentWindow.document.close();   
+                var html = '\x3Cscript type="text/javascript" src="http://bs.preview.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&amp;c=28&amp;pli=&amp;PluID=0&amp;pr=1&amp;ai='+adid+'&amp;w='+adwidth+'&amp;h='+adheight+'&amp;&ibp=1&amp;ord=">\x3C/script>';
+               ifrm = document.getElementById('posicion01');
+                
                 
             }else{
-                var html = '\x3Cdiv id="adcontainer1" style="">\x3Cscript type="text/javascript"  src="http://bs.preview.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&amp;c=28&amp;pli=&amp;PluID=0&amp;pr=1&amp;ai='+adid+'&amp;w='+adwidth+'&amp;h='+adheight+'&amp;&ibp=1&amp;ord=">\x3C/script>\x3C/div>';
-                document.getElementById('posicion02').contentWindow.document.open();
-            document.getElementById('posicion02').contentWindow.document.write(html); 
-            document.getElementById('posicion02').contentWindow.document.close();   
+                var html = '<script type="text/javascript" src="http://bs.preview.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&amp;c=28&amp;pli=&amp;PluID=0&amp;pr=1&amp;ai='+adid+'&amp;w='+adwidth+'&amp;h='+adheight+'&amp;&ibp=1&amp;ord=">\x3C/script>';
+                ifrm = document.getElementById('posicion02');   
             }
 
+            // ifrm.width = adwidth;
+            // ifrm.height = adheight;
+            // ifrm.style.width = adwidth+'px';
+            // ifrm.style.height = adheight+'px';
+            // ifrm.contentWindow.document.open();
+            // ifrm.contentWindow.document.write(html); 
+            // ifrm.contentWindow.document.close(); 
             
+
+
+            //document.write(html);
 
         }
 </script>
