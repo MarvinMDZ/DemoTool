@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:200');
 
 /* Resets ------ */ 
 
@@ -17,6 +18,14 @@ article, aside, canvas, figure, figure img, figcaption, hgroup, footer, header, 
 a img
 {
     border: 0;
+}
+
+button{
+	background-color: transparent;
+	outline: none;
+	border: none;
+	color:#FFF;
+	cursor: pointer;
 }
 
 body{
@@ -39,30 +48,51 @@ nav ul li{
 	cursor: pointer;
 	padding: 5px 20px;
 }
+nav ul li:first-child{
+	display: none;
+	background: url(../images/menuMobile.png) no-repeat center center;
+}
 nav ul li:hover{
-	text-decoration: underline;
+	color: #00d1c6;
 }
 article{
+	font-size: 14px;
 	padding-bottom: 20px;
 }
 h1{
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: 100;
 	font-size: 32px;
 	padding: 5px 0 10px;
 }
-#mainContainer{
-	position: absolute;
+
+html{
+	overflow-x: hidden;
+}
+
+#wrapper{
+	position: relative;
 	max-width: 1024px;
 	width: 100%;
+	margin-bottom: 44px;
 	text-align: center;
 	left: 50%;
 	transform: translateX(-50%);
-	background: #FFF;
+	z-index: 10;
 }
-#mainContainer header{
+#wrapper header{
+	background: #FFF;
 	padding: 10px 0;
 }
-#mainContainer header img{
+#wrapper header img{
 	max-width: 100%;
+	padding: 25px 0;
+}
+
+#newsContainer{
+	position: relative;
+	padding: 0 10px;
+	background: #FFF;
 }
 
 #mainContent{
@@ -89,42 +119,152 @@ h1{
 	max-width: 100%;
 }
 
-#posicion01{
+#placement01,#placement02,#placement04{
 	width: 100%;
 	background-color: #00d1c6;
-	margin-bottom: 5px;
+	text-align: center;
 }
-#posicion02{
-	width: 100%;
-	background-color: #00d1c6;
-	margin-bottom: 5px;
+#placement03{
+	z-index: 9999999;
 }
-
 
 
 #formContainer{
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,.7);
-	z-index: 100;
+	max-width: 320px;
+	max-height: 225px;
+	background-color: rgba(0,0,0,.8);
+	overflow: hidden;
+	z-index: 99;
 }
 
+#formContainer h1{
+	text-align: center;
+	color: #FFF;
+	margin-top: 7px;
+}
+
+#toggleForm{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	padding-bottom: 2px;
+	margin: 0;
+	border: solid 1px #FFF;
+	border-radius: 0;
+	z-index: 999;
+}
 #contact-form{
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	background-color: #0d2a4d;
+	margin-left: 25px;
 	color: #FFF;
-	padding:100px;
 	border-radius: 10px; 
-	max-width: 640px;
-	max-height: 480px;
 
 }
+label{
+	display: inline-block;
+    min-width: 120px;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+input{
+	min-width: 150px;
+	text-align: center;
+	font-size: 11px;
+	color: #00d1c6;
+	background-color: transparent;
+	border: solid 2px #000;
+	outline-color: #00d1c6;
+	outline-width: 2px;
+}
+input[ type="radio" ]{
+	display: none;
+}
+.radioLabel{
+	max-width: 50px;
+	max-height: 30px;
+	min-width: auto;
+}
+.radioLabel:before{
+	content: " ";
+	display: inline-block;
+	position: relative;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	border: 2px solid #00d1c6;
+	background-color: transparent;
+	margin-right: 3px;
+	vertical-align: -2px;
+}
 
+#contact-form input[type='radio']:checked+label:before {
+  background-color: #00d1c6;;
+}
 
+#Submit{
+	position: absolute;
+	left: 50%;
+	margin-top: 20px;
+	transform: translateX(-50%);
+	color: #00d1c6;
+	border: 1px solid #00d1c6;
+	padding: 10px;
+	text-transform: uppercase; 
+}
+
+#mainFooter{
+	position: relative;
+	width: 100%;
+	height: 44px;
+	margin-top: -44px;
+	background-color: #000;
+	background-image: url('data:image/svg+xml;utf8,<svg fill="rgb(255,255,255)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="830px" height="220px" viewBox="0 0 830 220" version="1.1"><g><path d="M125.5 0.8 L66.104 0.8 C19.672 0.8 3.1 34.6 3.1 66.2 C3.137 123.2 71.3 131.4 80.2 134.1 C96.894 139.2 100.3 145.7 100 157.9 C99.404 181 80.9 182.7 67.8 183.6 C57.502 184.3 25 182.4 0 180.4 L0 217.6 C0 217.6 36.6 220.4 77.2 219.9 C123.404 219.4 137.6 186.2 137.5 154.6 C137.4 109.3 104.5 100.4 88.4 96.4 C77.599 93.7 42.1 88.5 41.5 63.9 C41.382 57.1 40.7 38.5 68 36.8 L123.587 36.8 C139.355 37.6 145.4 42.2 147.8 47.7 L185.187 41.9 C179.19 15.6 150.7 1.8 125.5 0.8 L125.5 0.8 Z M149.186 217.5 L186.331 217.5 L186.331 57.9 L149.186 57.9 L149.186 217.5 Z M805.305 15.9 L808.334 15.9 L808.334 3.1 L812.887 3.1 L812.887 0.3 L800.951 0.3 L800.951 3.1 L805.305 3.1 L805.305 15.9 L805.305 15.9 Z M826.051 0.3 L822.197 10 L818.508 0.3 L814.6 0.3 L814.6 15.9 L817.459 15.9 L817.459 6.3 L821.102 16 L823.465 16 L827.104 6.3 L827.104 15.9 L829.969 15.9 L829.969 0.3 L826.051 0.3 L826.051 0.3 Z M782.088 57.9 L733.94 113 L728.897 113 L728.897 0 L692.358 0 L692.358 217.5 L728.897 217.5 L728.897 149.5 L733.073 149.5 L781.221 217.5 L825.594 217.5 L765.807 132.2 L828.866 57.9 L782.088 57.9 L782.088 57.9 Z M641.299 119 C641.131 99.1 633.4 91.3 613.9 91.3 C591.739 91.3 588 108.4 587.9 119 L641.299 119 L641.299 119 Z M677.834 119.7 L677.834 153.3 L588.391 153.3 C590.649 180.3 600.3 182.6 613.1 182.6 C630.625 182.6 658.6 180.3 658.8 180.3 L673.604 179.1 L673.604 215.1 L660.899 216 C659.467 216 625.6 218.4 612.9 218.4 L612.78 218.4 C558.335 218 551.4 176.1 551.4 139.6 L551.356 119.7 C551.356 81.9 577.1 55.6 613.9 55.6 C653.948 55.6 677.8 79.5 677.8 119.7 L677.834 119.7 Z M483.508 55.6 C470.973 55.6 451 63.4 438.8 68.7 C429.633 60.8 416.6 55.6 404.7 55.6 C395.711 55.6 382.8 59.6 372 63.7 L372.008 57.9 L335.479 57.9 L335.479 217.5 L372.008 217.5 L372.008 101.9 C385.342 96.3 399.9 91.3 404.7 91.3 C415.691 91.3 419.6 102.6 419.6 112.3 L419.606 217.5 L456.139 217.5 L456.139 112.3 C456.139 108 455.9 104.2 455.4 100.6 C467.997 95.3 479.9 91.3 483.5 91.3 C492.026 91.3 501.1 98.7 501.1 112.3 L501.09 217.5 L537.622 217.5 L537.622 112.3 C537.622 79.4 514.9 55.6 483.5 55.6 L483.508 55.6 Z M201.086 57.9 L322.006 57.9 L322.006 84.7 L252.432 181.5 L322.006 181.5 L322.006 217.5 L201.086 217.5 L201.086 191.2 L271.416 93.7 L201.086 93.7 L201.086 57.9 L201.086 57.9 Z"/></g></svg>');
+	background-size: 48px;
+	background-position: 12px 15px;
+	background-repeat: no-repeat;
+	z-index: 99999999;
+}
+#mainFooter h6{
+	position: absolute;
+	top: 0;
+	right: 10px;
+	display: inline-block;
+	width: 100%;
+	color: #FFF;
+	font-size: 12px;
+	font-weight: 300;
+	line-height: 44px;
+	text-align: right;
+}
+
+@media (max-width: 810px) {
+	#mainContent{
+		max-width: 100%;
+		min-width: 320px;
+		padding-right: 0px;
+	}
+	#newsContainer{
+		padding: 0;
+	}
+	p,h1{
+		padding: 0 10px;
+	}
+	nav ul li{
+		display: none;
+	}
+	nav ul li:first-child{
+		display: block;
+	}
+	#formContainer h1{
+		padding:0;
+	}
+}
 

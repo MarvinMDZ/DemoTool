@@ -1,0 +1,23 @@
+Demos:
+
+Expandable Multidevide:
+?placementId=22936971&adWidth=300&adHeight=250&position=2
+
+Homepage Takeover Spotify:
+?placementId=22839281&adWidth=800&adHeight=235&position=1
+
+DCO Example:
+?placementId=22891289&adWidth=300&adHeight=250&position=2
+
+VB:
+?placementId=20435688&adWidth=980&adHeight=250&position=1
+
+Billboard + Skies Sincro:
+?placementId=19695403&width=980&height=250&position=1
+
+Single Polite Responsive:
+?placementId=19644525&width=980&height=250&position=4
+
+Butterfly:
+
+?placementId=20834234&width=1&height=1&position=3
