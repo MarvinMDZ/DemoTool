@@ -1,3 +1,10 @@
+/*
+* Author: Javier Egido Alonso
+* Email: javier.egido.alonso@gmail.com
+* Based on an original idea by Kode02: code02@gmail.com http://demo.sizmek.com/Europe/tools/
+*/
+
+
 (function ( window, document, undefined ) {
 
     var placementId, adWidth, adHeight, position, toggleForm,formContainer;
@@ -14,18 +21,30 @@
             adWidth = getUrlParameters('width','',true);
             adHeight = getUrlParameters('height','',true);
             position = getUrlParameters('position','',true);
-
+            cssCode = getUrlParameters('cssCode','',true);
             toggleForm.innerHTML = '+';
             
-            writeTag(placementId, adWidth, adHeight, position);
+            writeTag(placementId, adWidth, adHeight, position,cssCode);
+            if (cssCode != '') {
+                insertStyle(decode(cssCode));
+            }
+            getById('placementId').value = placementId;
+            getById('width').value = adWidth;
+            getById('height').value = adHeight;
+            var auxPos = document.querySelectorAll('input[name="position"]')[position-1];
+            auxPos.checked = true;
+            getById('cssCode').value = cssCode;
+
+
         }else{
             toggleForm.innerHTML = '-';
-            getById('Submit').addEventListener('click',function(){            
+            getById('Submit').addEventListener('click',function(){           
                 placementId = getById('placementId');
                 adWidth = getById('width');
                 adHeight = getById('height');
                 position = document.querySelector('input[name="position"]:checked');
-                writeTag(placementId.value, adWidth.value, adHeight.value, position.value);
+                cssCode = decode(getById('cssCode'));
+                writeTag(placementId.value, adWidth.value, adHeight.value, position.value,cssCode.value);
             });
         }
     }
@@ -57,7 +76,7 @@
         }
     }
 
-    function writeTag(placementIdPar, adWidthPar, adHeightPar, positionPar)
+    function writeTag(placementIdPar, adWidthPar, adHeightPar, positionPar,cssPar)
     {
         var ebRand = String(Math.random());
         ebRand = ebRand.substr(ebRand.indexOf(".") + 1);
@@ -100,9 +119,21 @@
         myDiv.appendChild(myScript);
 
         var stateObj = { preview: "Generated" };
-        var newUrl = "index.html?placementId="+placementIdPar+"&width="+adWidthPar+"&height="+adHeightPar+"&position="+positionPar;
+        var newUrl = "index.html?placementId="+placementIdPar+"&width="+adWidthPar+"&height="+adHeightPar+"&position="+positionPar+"&cssCode="+encode(cssCode);
         window.history.pushState(stateObj, "Sizmek Placement Preview", newUrl);
 
+    }
+
+    function insertStyle(str){
+        var styleElement = document.createElement('style');
+        styleElement.setAttribute('type', 'text/css');
+        if(styleElement.styleSheet) {
+            styleElement.styleSheet.cssText = str;
+        }
+        else {
+            styleElement.appendChild(document.createTextNode(str));
+        }
+        document.getElementsByTagName('head')[0].appendChild(styleElement);
     }
 
     function toggleFormState(){
@@ -110,7 +141,7 @@
             case '+':
                 toggleForm.innerHTML = '-';
                 formContainer.style.width = '450px';
-                formContainer.style.height = '300px';
+                formContainer.style.height = '320px';
                 break;
             case '-':
                 toggleForm.innerHTML = '+';
@@ -119,6 +150,14 @@
                 break;
         }
     }
+
+    function encode(str) {
+        return encodeURIComponent(str).replace(/'/g,"%27").replace(/"/g,"%22");  
+    }
+    function decode(str) {
+        return decodeURIComponent(str.replace(/\+/g,  " "));
+    }
+
     window.addEventListener("load", init);
 
     function getById(id){
