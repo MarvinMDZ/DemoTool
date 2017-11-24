@@ -22,6 +22,9 @@
             adHeight = getUrlParameters('height','',true);
             position = getUrlParameters('position','',true);
             cssCode = getUrlParameters('cssCode','',true);
+            if (cssCode === false) {
+                cssCode = '';
+            }
             toggleForm.innerHTML = '+';
             
             writeTag(placementId, adWidth, adHeight, position,cssCode);

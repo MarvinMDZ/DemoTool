@@ -140,7 +140,7 @@ html{
 	max-height: 320px;
 	background-color: rgba(0,0,0,.8);
 	overflow: hidden;
-	z-index: 99;
+	z-index: 99999999;
 }
 
 #formContainer h1{
